@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<!-- 依赖注入：给service注入dao -->
+	<bean id="managerService" class="com.shepherd.service.impl.ManagerServiceImpl">
+		<property name="managerMapper"  ref="managerMapper"></property>
+	</bean>
+	<bean id="medicineService" class="com.shepherd.service.impl.MedicineServiceImpl">
+		<property name="medicineMapper"  ref="medicineMapper"></property>
+	</bean>
+	<bean id="financeService" class="com.shepherd.service.impl.FinanceServiceImpl">
+		<property name="financeMapper"  ref="financeMapper"></property>
+	</bean>
+	<bean id="technologyService" class="com.shepherd.service.impl.TechnologyServiceImpl">
+		<property name="technologyMapper"  ref="technologyMapper"></property>
+	</bean>
+	<bean id="languageService" class="com.shepherd.service.impl.LanguageServiceImpl">
+		<property name="languageMapper"  ref="languageMapper"></property>
+	</bean>
+	<bean id="sportsService" class="com.shepherd.service.impl.SportsServiceImpl">
+		<property name="sportsMapper"  ref="sportsMapper"></property>
+	</bean>
+	<bean id="userService" class="com.shepherd.service.impl.UserServiceImpl">
+		<property name="userMapper"  ref="userMapper"></property>
+	</bean>
+	<bean id="societyService" class="com.shepherd.service.impl.SocietyServiceImpl">
+		<property name="societyMapper"  ref="societyMapper"></property>
+	</bean>
+	<bean id="comprehensiveService" class="com.shepherd.service.impl.ComprehensiveServiceImpl">
+		<property name="comprehensiveMapper"  ref="comprehensiveMapper"></property>
+	</bean>
+	
+	
+	<!-- 给controller注入service -->
+	<bean id="managerController" class="com.shepherd.controller.ManagerController">
+		<property name="managerService" ref="managerService"></property>
+	</bean>
+	<bean id="medicineController" class="com.shepherd.controller.MedicineController">
+		<property name="medicineService" ref="medicineService"></property>
+	</bean>
+	<bean id="financeController" class="com.shepherd.controller.FinanceController">
+		<property name="financeService" ref="financeService"></property>
+	</bean>
+	<bean id="languageController" class="com.shepherd.controller.LanguageController">
+		<property name="languageService" ref="languageService"></property>
+	</bean>
+	<bean id="sportsController" class="com.shepherd.controller.SportsController">
+		<property name="sportsService" ref="sportsService"></property>
+	</bean>
+	<bean id="technologyController" class="com.shepherd.controller.TechnologyController">
+		<property name="technologyService" ref="technologyService"></property>
+	</bean>
+	<bean id="societyController" class="com.shepherd.controller.SocietyController">
+		<property name="societyService" ref="societyService"></property>
+	</bean>
+	<bean id="comprehensiveController" class="com.shepherd.controller.ComprehensiveController">
+		<property name="comprehensiveService" ref="comprehensiveService"></property>
+	</bean>
+	
+	
+	
+	<!-- 配置配置数据库信息 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+			<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+			<property name="url" value="jdbc:mysql://localhost:3306/knowledge?useUnicode=true&amp;characterEncoding=utf8"/>
+			<property name="username" value="root"/>
+			<property name="password" value="root"/>
+	</bean>
+	
+	<!-- 配置MyBatis需要的核心类：SqlSessionFactory -->
+	<!-- 在SpringIoc容器中 创建MyBatis的核心类 SqlSesionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 加载mapper.xml路径 -->
+		<property name="mapperLocations" value="classpath:com/shepherd/mapper/*.xml"></property>
+		</bean>
+	
+
+	<!-- 将MyBatis的SqlSessionFactory 交给Spring -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	 	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	 	<property name="basePackage" value="com.shepherd.mapper"></property>
+	 	
+	</bean>
+	
+	
+	<!-- 文件上传和下载 -->
+	<bean id="multipartResolver"
+	   class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	   <property name="defaultEncoding" value="utf-8"></property>
+	   <property name="maxUploadSize" value="10485760000"></property>
+	   <property name="maxInMemorySize" value="40960"></property>
+	</bean>
+
+
+</beans>

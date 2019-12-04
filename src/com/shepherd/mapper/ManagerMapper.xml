@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shepherd.mapper.ManagerMapper">
+
+	<select id="GetOneByNameAndPwd" 	parameterType="com.shepherd.entity.Manager"  	resultType="com.shepherd.entity.Manager"  >
+		select * from manager where mName = #{mName} and mPwd = #{mPwd}
+	</select>
+	
+	<select id="medicineSearch" 	parameterType="com.shepherd.entity.SearchData"  	resultType="com.shepherd.entity.Search"  >
+		select question,answerA,answerB,answerC,answerD,answer from medicinetable where mID = #{ID}
+	</select>
+	
+	<select id="financeSearch" 	parameterType="com.shepherd.entity.SearchData"  	resultType="com.shepherd.entity.Search"  >
+		select question,answerA,answerB,answerC,answerD,answer from finance where fID = #{ID}
+	</select>
+	
+	<select id="technologySearch" 	parameterType="com.shepherd.entity.SearchData"  	resultType="com.shepherd.entity.Search"  >
+		select question,answerA,answerB,answerC,answerD,answer from technology where tID = #{ID}
+	</select>
+	
+	<select id="languageSearch" 	parameterType="com.shepherd.entity.SearchData"  	resultType="com.shepherd.entity.Search"  >
+		select question,answerA,answerB,answerC,answerD,answer from language where lID = #{ID}
+	</select>
+	
+	<select id="sportsSearch" 	parameterType="com.shepherd.entity.SearchData"  	resultType="com.shepherd.entity.Search"  >
+		select question,answerA,answerB,answerC,answerD,answer from sports where sID = #{ID}
+	</select>
+	
+	<select id="societySearch" 	parameterType="com.shepherd.entity.SearchData"  	resultType="com.shepherd.entity.Search"  >
+		select question,answerA,answerB,answerC,answerD,answer from society where sID = #{ID}
+	</select>
+	
+	<select id="comprehensiveSearch" 	parameterType="com.shepherd.entity.SearchData"  	resultType="com.shepherd.entity.Search"  >
+		select question,answerA,answerB,answerC,answerD,answer from comprehensive where cID = #{ID}
+	</select>
+	
+	
+	<update id="medicineUpdate" parameterType="com.shepherd.entity.Medicine" >
+		update medicinetable set question = #{question},answerA = #{answerA},answerB = #{answerB},
+		answerC = #{answerC},answerD = #{answerD},answer = #{answer} where mID = #{mID} 
+	</update>
+	
+	<update id="financeUpdate" parameterType="com.shepherd.entity.Finance" >
+		update finance set question = #{question},answerA = #{answerA},answerB = #{answerB},
+		answerC = #{answerC},answerD = #{answerD},answer = #{answer} where fID = #{fID} 
+	</update>
+	
+	<update id="technologyUpdate" parameterType="com.shepherd.entity.Technology" >
+		update technology set question = #{question},answerA = #{answerA},answerB = #{answerB},
+		answerC = #{answerC},answerD = #{answerD},answer = #{answer} where tID = #{tID} 
+	</update>
+	
+	<update id="languageUpdate" parameterType="com.shepherd.entity.Language" >
+		update language set question = #{question},answerA = #{answerA},answerB = #{answerB},
+		answerC = #{answerC},answerD = #{answerD},answer = #{answer} where lID = #{lID} 
+	</update>
+	
+	<update id="sportsUpdate" parameterType="com.shepherd.entity.Sports" >
+		update sports set question = #{question},answerA = #{answerA},answerB = #{answerB},
+		answerC = #{answerC},answerD = #{answerD},answer = #{answer} where sID = #{sID} 
+	</update>
+	
+	<update id="societyUpdate" parameterType="com.shepherd.entity.Society" >
+		update society set question = #{question},answerA = #{answerA},answerB = #{answerB},
+		answerC = #{answerC},answerD = #{answerD},answer = #{answer} where sID = #{sID} 
+	</update>
+	
+	<update id="comprehensiveUpdate" parameterType="com.shepherd.entity.Comprehensive" >
+		update comprehensive set question = #{question},answerA = #{answerA},answerB = #{answerB},
+		answerC = #{answerC},answerD = #{answerD},answer = #{answer} where cID = #{cID} 
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

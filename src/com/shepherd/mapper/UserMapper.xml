@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shepherd.mapper.UserMapper">
+
+	<select id="GetOneUser" 	parameterType="com.shepherd.entity.User"  	resultType="com.shepherd.entity.User"  >
+		select * from user where uName = #{uName} and uPwd = #{uPwd}
+	</select>
+	
+	<insert id="AddOne" parameterType="com.shepherd.entity.User" >
+		insert into user(uName,uPwd,uPermission) values(#{uName},#{uPwd},#{uPermission})
+	</insert>
+	
+	<select id="getScores" parameterType="java.lang.Integer" resultType="com.shepherd.entity.Scores">
+		select ID,topic,score from scores where uID = #{ID}
+	</select>
+</mapper>

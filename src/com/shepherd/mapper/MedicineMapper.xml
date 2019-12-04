@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shepherd.mapper.MedicineMapper">
+
+	<insert id="InsertMedicine" parameterType="java.util.List">
+	
+	
+	</insert>
+	
+	<!--  
+	<resultMap id="BaseResultMap" type="com.shepherd.entity.Medicine" >                                                                 
+    <id column="id" property="id" jdbcType="INTEGER" />                                                                              
+    <result column="username" property="userName" jdbcType="VARCHAR" />                                                             
+    <result column="password" property="password" jdbcType="VARCHAR" />                                                                                                                              
+  	</resultMap>          
+  	-->                                                                                                             
+ 	<sql id="Base_Column_List" >  
+		 question,answerA,answerB,answerC,answerD,answer
+  	</sql>
+	
+	<select id="GetAllMedicine" resultType="com.shepherd.entity.Medicine">
+		
+		select * from medicinetable 
+	
+	</select>
+</mapper>
